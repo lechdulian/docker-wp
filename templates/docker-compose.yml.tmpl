@@ -1,9 +1,6 @@
 version: '3.7'
 
 services:
-  photon:
-    image: chriszarate/photon:latest
-    container_name: $PROJECT_ID-photon
   $PROJECT_ID-database:
     image: mariadb:10.2
     restart: always
@@ -38,7 +35,6 @@ services:
       - "./bin/.htaccess:/var/www/html/.htaccess:ro"
       - "./bin/php-local.ini:/usr/local/etc/php/conf.d/local.ini:ro"
       - "./bin/wp-local-config.php:/usr/local/etc/php/autoprepend.php:ro"
-      - "./source/vip-go-mu-plugins:/var/www/html/wp-content/mu-plugins"
       - "./source/content:/var/www/html/wp-content"
     container_name: $PROJECT_ID-wordpress
   wp-cli:
@@ -53,7 +49,6 @@ services:
       - "./bin/install-wp.sh:/usr/local/bin/install-wp:ro"
       - "./bin/php-local.ini:/usr/local/etc/php/conf.d/local.ini:ro"
       - "./bin/wp-local-config.php:/usr/local/etc/php/autoprepend.php:ro"
-      - "./source/vip-go-mu-plugins:/var/www/html/wp-content/mu-plugins"
       - "./source/content:/var/www/html/wp-content"
     container_name: $PROJECT_ID-wp-cli
 
